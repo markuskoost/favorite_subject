@@ -1,25 +1,28 @@
 <?php
 require 'connection.php';
 
-$query = "SELECT * FROM noodles LIMIT 3";
+$query = "SELECT * FROM noodles";
+
+$noodles =
+    [
+        'info' => [
+            'name' => 'Markus Koost',
+            'description' => 'Noodles'
+        ],
+    ];
 
 if ($result = $mysqli->query($query)) {
-    while ($marker = $result->fetch_assoc()) {
-        $markers[] = [
-            'info' => [
-                'name' => 'Markus Koost',
-                'description' => 'Noodles'
-            ],
-            'data' => [
-                'title' => $marker['title'],
-               'description' => $marker['description'],
-                'image' => $marker['image'],
-                'topic1'=> $marker['flavor'],
-                'topic2' => $marker['grams']
-            ],
+    while ($noodle = $result->fetch_array()) {
+        $noodles['data'][] =
+            [
+                'title' => $noodle['title'],
+               'description' => $noodle['description'],
+                'image' => $noodle['image'],
+                'topic1'=> $noodle['flavor'],
+                'topic2' => $noodle['grams']
         ];
     }
     $result->close();
 }
 header('Content-Type: application/json');
-echo json_encode($markers);
+echo json_encode($noodles);

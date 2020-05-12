@@ -7,7 +7,7 @@ switch ($t) {
         break;
 
     case 'topic2':
-        $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee/'));
+        $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee'));
         break;
     default:
         $data = [];
