@@ -2,12 +2,12 @@
 require 'connection.php';
 
 if ($_GET['limit']) {
-    $limitsql = ' limit 0, ' . $_GET['limit'];
+    $limitSQL = ' limit 0, ' . $_GET['limit'];
 } else {
-    $limitsql = '';
+    $limitSQL = '';
 }
 
-$query = "SELECT * FROM noodles" . $limitsql;
+$query = "SELECT * FROM noodles" . $limitSQL;
 
 $noodles =
     [
