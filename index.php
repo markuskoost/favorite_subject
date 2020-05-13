@@ -7,7 +7,7 @@ if ($_GET['limit']) {
     $limitSQL = '';
 }
 
-$query = "SELECT * FROM noodles" . $limitSQL;
+$query = "SELECT * FROM noodles" . mysqli_real_escape_string($mysqli ,$limitSQL);
 
 $noodles =
     [
@@ -21,6 +21,7 @@ if ($result = $mysqli->query($query)) {
     while ($noodle = $result->fetch_array()) {
         $noodles['data'][] =
             [
+                'id' => $noodle['id'],
                 'title' => $noodle['title'],
                'description' => $noodle['description'],
                 'image' => $noodle['image'],
