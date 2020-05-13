@@ -1,13 +1,17 @@
 <?php
 require 'connection.php';
 
-$result = mysqli_query($mysqli,"SELECT * FROM noodles WHERE id = '".$_GET['id']."'");
+$image = $_POST['image'];
+$title = $_POST['title'];
+$description = $_POST['description'];
+$topic1 = $_POST['topic1'];
+$topic2 = $_POST['topic2'];
 
-$details = mysqli_fetch_assoc($result);
-
-echo "<img src='" . $details['image'] . "'";
-echo '<br>' . '</br>';
-echo 'Title : '.$details['title'].'<br>';
-echo 'Description: '.$details['description'].'<br>';
-echo 'Flavor: '.$details['flavor'].'<br>';
-echo 'Grams: '.$details['grams'].'<br>';
+if (isset($_POST['action'])) {
+    echo "<img src='" . $image . "'";
+    echo '<br>' . '</br>';
+    echo 'Title : '.$title.'<br>';
+    echo 'Description : '.$description.'<br>';
+    echo 'Topic 1 : '.$topic1.'<br>';
+    echo 'Topic 2 : '.$topic2.'<br>';
+}

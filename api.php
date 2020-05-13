@@ -69,16 +69,21 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
 
             foreach ($data->data as $row) { ?>
 
-                <div class="card" style="width: 18rem;">
-                    <img src="<?php echo $row->image; ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row->title; ?></h5>
-                        <p class="card-text"><?php echo $row->description; ?></p>
-                        <p class="card-text"><?php echo $row->topic1; ?></p>
-                        <p class="card-text"><?php echo $row->topic2; ?></p>
-                        <a href="detail.php?id=<?php echo $row->id; ?>" class="btn btn-primary">Details</a>
+                <form action="detail.php" method="post">
+                    <input type="hidden" id="image" name="image" value="<?php echo $row->image; ?>"/>
+                    <input type="hidden" id="title" name="title" value="<?php echo $row->title; ?>"/>
+                    <input type="hidden" id="description" name="description" value="<?php echo $row->description; ?>"/>
+                    <input type="hidden" id="topic1" name="topic1" value="<?php echo $row->topic1; ?>"/>
+                    <input type="hidden" id="topic2" name="topic2" value="<?php echo $row->topic2; ?>"/>
+                    <div class="card" style="width: 18rem;">
+                        <img src="<?php echo $row->image; ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $row->title; ?></h5>
+                            <p class="card-text"><?php echo $row->description; ?></p>
+                            <button class="btn btn-primary" name="action" value="action">Details</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             <?php }
             ?>
         <?php endif; ?>
