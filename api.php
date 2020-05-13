@@ -3,14 +3,34 @@ $t = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 
 switch ($t) {
     case 'topic1':
-        $data = json_decode(file_get_contents('https://yl5hajusrakendused.tak17pold.itmajakas.ee/'));
+        $url = 'https://yl5hajusrakendused.tak17pold.itmajakas.ee/';
+        $cacheFile = './cache/topic1.json';
+        $cacheTime = 120;
         break;
-
     case 'topic2':
-        $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee'));
+        $url = 'https://favorite-subject.tak17koost.itmajakas.ee';
+        $cacheFile = './cache/topic2.json';
+        $cacheTime = 120;
+        break;
+    case 'topic3':
+        $url = 'https://tak17.janek.itmajakas.ee/code/hajusrakendused/ylesanne5';
+        $cacheFile = './cache/topic3.json';
+        $cacheTime = 120;
         break;
     default:
-        $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee'));
+        $url = 'https://favorite-subject.tak17koost.itmajakas.ee';
+        $cacheFile = './cache/default.json';
+        $cacheTime = 120;
+}
+
+if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
+    $data = json_decode(file_get_contents($cacheFile));
+} else {
+    $data = json_decode(file_get_contents($url));
+
+    $file = fopen($cacheFile, 'w');
+    fwrite($file, json_encode($data));
+    fclose($file);
 }
 
 ?>
@@ -22,7 +42,8 @@ switch ($t) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Hello, world!</title>
 </head>
@@ -32,6 +53,7 @@ switch ($t) {
         <ul>
             <li><a href="?t=topic1">Topic 1</a></li>
             <li><a href="?t=topic2">Topic 2</a></li>
+            <li><a href="?t=topic3">Topic 3</a></li>
         </ul>
     </div>
     <div class="col-8">
@@ -60,8 +82,14 @@ switch ($t) {
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
