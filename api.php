@@ -47,6 +47,11 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
 </head>
 <body>
 <div class="container">
+    <div align="right">
+        <a href="https://favorite-subject.tak17koost.itmajakas.ee/">API</a>
+        <a>│</a>
+        <a href="https://favorite-subject.tak17koost.itmajakas.ee/form.php">Form</a>
+    </div>
     <div class="col-4">
         <ul>
             <li><a href="?t=topic1">Topic 1</a></li>
