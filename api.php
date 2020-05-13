@@ -54,9 +54,9 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
     </div>
     <div class="col-4">
         <ul>
-            <li><a href="?t=topic1">Topic 1</a></li>
-            <li><a href="?t=topic2">Topic 2</a></li>
-            <li><a href="?t=topic3">Topic 3</a></li>
+            <li><a href="?t=topic1">Subject 1</a></li>
+            <li><a href="?t=topic2">Subject 2</a></li>
+            <li><a href="?t=topic3">Subject 3</a></li>
         </ul>
     </div>
     <div class="col-8">
@@ -83,6 +83,7 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
                             <button class="btn btn-primary" name="action" value="action">Details</button>
                         </div>
                     </div>
+                    <br>
                 </form>
             <?php }
             ?>
