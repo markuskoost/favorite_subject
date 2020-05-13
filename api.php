@@ -69,6 +69,8 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row->title; ?></h5>
                         <p class="card-text"><?php echo $row->description; ?></p>
+                        <p class="card-text"><?php echo $row->topic1; ?></p>
+                        <p class="card-text"><?php echo $row->topic2; ?></p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
