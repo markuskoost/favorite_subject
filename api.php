@@ -5,22 +5,22 @@ switch ($t) {
     case 'topic1':
         $url = 'https://yl5hajusrakendused.tak17pold.itmajakas.ee/';
         $cacheFile = './cache/topic1.json';
-        $cacheTime = 120;
+        $cacheTime = 60;
         break;
     case 'topic2':
         $url = 'https://favorite-subject.tak17koost.itmajakas.ee';
         $cacheFile = './cache/topic2.json';
-        $cacheTime = 120;
+        $cacheTime = 60;
         break;
     case 'topic3':
         $url = 'https://tak17.janek.itmajakas.ee/code/hajusrakendused/ylesanne5';
         $cacheFile = './cache/topic3.json';
-        $cacheTime = 120;
+        $cacheTime = 60;
         break;
     default:
         $url = 'https://favorite-subject.tak17koost.itmajakas.ee';
         $cacheFile = './cache/default.json';
-        $cacheTime = 120;
+        $cacheTime = 60;
 }
 
 if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
@@ -28,9 +28,7 @@ if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTime) {
 } else {
     $data = json_decode(file_get_contents($url));
 
-    $file = fopen($cacheFile, 'w');
-    fwrite($file, json_encode($data));
-    fclose($file);
+    file_put_contents($cacheFile, json_encode($data));
 }
 
 ?>
