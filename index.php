@@ -7,7 +7,7 @@ if ($_GET['limit']) {
     $limitsql = '';
 }
 
-$query = "SELECT * FROM noodles WHERE 1" . $limitsql;
+$query = "SELECT * FROM noodles" . $limitsql;
 
 $noodles =
     [
