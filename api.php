@@ -3,14 +3,14 @@ $t = filter_input(INPUT_GET, 't', FILTER_SANITIZE_STRING);
 
 switch ($t) {
     case 'topic1':
-        $data = json_decode(file_get_contents('https://tak17.janek.itmajakas.ee/code/hajusrakendused/ylesanne5'));
+        $data = json_decode(file_get_contents('https://yl5hajusrakendused.tak17pold.itmajakas.ee/'));
         break;
 
     case 'topic2':
         $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee'));
         break;
     default:
-        $data = [];
+        $data = json_decode(file_get_contents('https://favorite-subject.tak17koost.itmajakas.ee'));
 }
 
 ?>

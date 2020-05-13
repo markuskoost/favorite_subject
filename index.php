@@ -1,7 +1,7 @@
 <?php
 require 'connection.php';
 
-$query = "SELECT * FROM noodles";
+$query = "SELECT * FROM noodles LIMIT 3";
 
 $noodles =
     [

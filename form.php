@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h2>Form</h2>
-        <form action="save-form.php" method="post">
+        <form action="save-form.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="exampleInputPassword1">Title</label>
                 <input type="text" name="title" class="form-control" id="exampleInputPassword1">
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Image</label>
-                <input type="file" name="image">
+                <input type="file" name="image" id="image">
             </div>
             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
