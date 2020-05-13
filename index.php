@@ -1,7 +1,13 @@
 <?php
 require 'connection.php';
 
-$query = "SELECT * FROM noodles LIMIT 3";
+if ($_GET['limit']) {
+    $limitsql = ' limit 0, ' . $_GET['limit'];
+} else {
+    $limitsql = '';
+}
+
+$query = "SELECT * FROM noodles WHERE 1" . $limitsql;
 
 $noodles =
     [

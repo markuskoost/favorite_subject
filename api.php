@@ -18,7 +18,7 @@ switch ($t) {
         $cacheTime = 60;
         break;
     default:
-        $url = 'https://favorite-subject.tak17koost.itmajakas.ee';
+        $url = 'https://favorite-subject.tak17koost.itmajakas.ee?limit=3';
         $cacheFile = './cache/default.json';
         $cacheTime = 60;
 }
